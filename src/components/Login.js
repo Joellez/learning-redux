@@ -1,9 +1,22 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { login, logout } from "../features/user"
 
-function Login(props) {
-  return <div>
-    <button>Login</button>
-  </div>;
-}
 
+function Login() {
+  const dispatch = useDispatch();
+  return ( <div>
+    <button onClick={() => {
+      dispatch(login({ name: "Joelle", age: 31, email: "J@hotmail.com" }));
+    }}
+    >Login</button>
+    <button 
+    onClick={() => {
+      dispatch(logout());
+    }}
+    >Logout</button>
+  </div>
+  
+);
+  }
 export default Login;
