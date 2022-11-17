@@ -1,25 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeColour } from "../features/theme";
 
 function ChangeColour() {
-    const [colour, setColour] = useState("");
-    const dispatch = useDispatch();
-    return (
-        <div>
-            <input 
-            type="text" placeholder="Choose a colour"
-            onChange={(event) => {
-                setColour(event.target.value)
-            }}
-             />
-          <button
-          onClick={() => {
-            dispatch(changeColour(colour));
+  const [colour, setColour] = useState("");
+  const dispatch = useDispatch();
+  function handleSubmit(event) {
+    event.preventDefault();
+    dispatch(changeColour(colour));
+  }
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Choose a colour"
+          onChange={(event) => {
+            setColour(event.target.value);
           }}
-          > Change colour</button>  
-        </div>
-    );
+        />
+        <button type="submit"> Change colour</button>
+      </form>
+    </div>
+  );
 }
 
 export default ChangeColour;
